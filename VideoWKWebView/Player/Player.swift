@@ -646,7 +646,7 @@ extension Player {
             return
         }
         
-        self._playerItemObservers.append(playerItem.observe(\.playbackBufferEmpty, options: [.new, .old]) { (object, change) in
+        self._playerItemObservers.append(playerItem.observe(\.isPlaybackBufferEmpty, options: [.new, .old]) { (object, change) in
             if object.isPlaybackBufferEmpty {
                 self.bufferingState = .delayed
             }
@@ -661,7 +661,7 @@ extension Player {
             }
         })
 
-        self._playerItemObservers.append(playerItem.observe(\.playbackLikelyToKeepUp, options: [.new, .old]) { (object, change) in
+        self._playerItemObservers.append(playerItem.observe(\.isPlaybackLikelyToKeepUp, options: [.new, .old]) { (object, change) in
             if object.isPlaybackLikelyToKeepUp {
                 self.bufferingState = .ready
                 if self.playbackState == .playing {
@@ -718,7 +718,7 @@ extension Player {
     // MARK: - AVPlayerLayerObservers
 
     internal func addPlayerLayerObservers() {
-        self._playerLayerObserver = self._playerView.playerLayer.observe(\.readyForDisplay, options: [.new, .old]) { (object, change) in
+        self._playerLayerObserver = self._playerView.playerLayer.observe(\.isReadyForDisplay, options: [.new, .old]) { (object, change) in
             self.executeClosureOnMainQueueIfNecessary {
                 self.playerDelegate?.playerReady(self)
             }

@@ -3,5 +3,6 @@
 
 This is a sample application introduced at IOSDC 2018 Japan.
 
-Xcode version 9.4.1
+Xcode version 10.1
+iOS version 13.3
 
